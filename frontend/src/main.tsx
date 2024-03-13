@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Progress from "./pages/Progress.tsx";
+import SignUp from "./pages/sign-up.tsx";
 
 const router = createBrowserRouter([
   {
@@ -11,8 +11,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/my-progress",
-    element: <Progress />,
+    path: "/signUp",
+    element: <SignUp />,
   },
 ]);
 
