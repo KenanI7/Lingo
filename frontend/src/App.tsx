@@ -1,8 +1,8 @@
 // App.tsx
 import React, { useState } from 'react';
 import { Router } from '@reach/router';
-import Sidebar from './components/sidebar'; // Assuming you have a separate Sidebar component
-import Hamburger from './components/hamburger'; // Assuming you have a separate Hamburger component
+import Sidebar from './components/sidebar'; 
+import Hamburger from './components/hamburger'; 
 import LessonsPage from './pages/LessonsPage';
 import MyProgressPage from './pages/MyProgressPage';
 import SavedPage from './pages/SavedPage';
