@@ -60,6 +60,10 @@ export const removeUser = async (req: Request, res: Response, db: Db) => {
 };
 
 // Validation
+const isValidUsername = (username: string): boolean => {
+    return /^[a-zA-Z\s]+$/.test(username);
+};
+
 const isValidEmail = (email: string): boolean => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
@@ -68,6 +72,3 @@ const isValidPassword = (password: string): boolean => {
     return /^(?=.*\d)(?=.*[A-Z])[a-zA-Z0-9]{8,}$/.test(password);
 };
 
-const isValidUsername = (username: string): boolean => {
-    return /^[a-zA-Z]+$/.test(username);
-};
