@@ -4,7 +4,6 @@ import { Db } from 'mongodb';
 
 const router = express.Router();
 
-// Modify the routes to accept the db object
 export default function userRoutes(app: Application, db: Db) {
     router.post("/register", (req, res) => registerUser(req, res, db));
     router.get("/users", (req, res) => getAllUsers(req, res, db));

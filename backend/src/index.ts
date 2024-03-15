@@ -14,7 +14,6 @@ async function connectToMongoDB() {
         await client.connect();
         console.log('Connected to MongoDB');
         const db = client.db(dbName);
-        // Pass the db object to userRoutes
         userRoutes(app, db);
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);

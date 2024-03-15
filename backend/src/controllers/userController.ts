@@ -5,22 +5,22 @@ export const registerUser = async (req: Request, res: Response, db: Db) => {
     try {
         const { username, email, password } = req.body;
 
-        // Validate email format
+        // Validate email
         if (!isValidEmail(email)) {
             return res.status(400).json({ message: "Invalid email format" });
         }
 
-        // Validate password format
+        // Validate password
         if (!isValidPassword(password)) {
             return res.status(400).json({ message: "Invalid password format" });
         }
 
-        // Validate username format
+        // Validate username
         if (!isValidUsername(username)) {
             return res.status(400).json({ message: "Invalid username format" });
         }
 
-        // Insert user data into MongoDB
+        // Insert user data
         const usersCollection: Collection = db.collection("users");
         await usersCollection.insertOne({ username, email, password });
 
@@ -59,7 +59,7 @@ export const removeUser = async (req: Request, res: Response, db: Db) => {
     }
 };
 
-// Validation functions
+// Validation
 const isValidEmail = (email: string): boolean => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
