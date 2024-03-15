@@ -1,9 +1,24 @@
 import { Request, Response } from "express";
-import { Collection } from "mongodb";
+import { Collection, Db } from "mongodb";
 
-export const registerUser = async (req: Request, res: Response, db: any) => {
+export const registerUser = async (req: Request, res: Response, db: Db) => {
     try {
         const { username, email, password } = req.body;
+
+        // Validate email format
+        if (!isValidEmail(email)) {
+            return res.status(400).json({ message: "Invalid email format" });
+        }
+
+        // Validate password format
+        if (!isValidPassword(password)) {
+            return res.status(400).json({ message: "Invalid password format" });
+        }
+
+        // Validate username format
+        if (!isValidUsername(username)) {
+            return res.status(400).json({ message: "Invalid username format" });
+        }
 
         // Insert user data into MongoDB
         const usersCollection: Collection = db.collection("users");
@@ -16,7 +31,7 @@ export const registerUser = async (req: Request, res: Response, db: any) => {
     }
 };
 
-export const getAllUsers = async (req: Request, res: Response, db: any) => {
+export const getAllUsers = async (req: Request, res: Response, db: Db) => {
     try {
         const usersCollection: Collection = db.collection("users");
         const users = await usersCollection.find().toArray();
@@ -25,4 +40,34 @@ export const getAllUsers = async (req: Request, res: Response, db: any) => {
         console.error("Error fetching users:", error);
         res.status(500).json({ message: "Server error" });
     }
+};
+
+export const removeUser = async (req: Request, res: Response, db: Db) => {
+    try {
+        const { username } = req.params;
+        const usersCollection: Collection = db.collection("users");
+        const result = await usersCollection.deleteOne({ username });
+
+        if (result.deletedCount === 0) {
+            res.status(404).json({ message: "User not found" });
+        } else {
+            res.json({ message: "User removed successfully" });
+        }
+    } catch (error) {
+        console.error("Error removing user:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// Validation functions
+const isValidEmail = (email: string): boolean => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const isValidPassword = (password: string): boolean => {
+    return /^(?=.*\d)(?=.*[A-Z])[a-zA-Z0-9]{8,}$/.test(password);
+};
+
+const isValidUsername = (username: string): boolean => {
+    return /^[a-zA-Z]+$/.test(username);
 };

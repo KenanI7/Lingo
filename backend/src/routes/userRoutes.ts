@@ -1,9 +1,14 @@
-import express from "express";
-import { registerUser, getAllUsers } from "../controllers/userController";
+import express, { Application } from 'express';
+import { registerUser, getAllUsers, removeUser } from '../controllers/userController';
+import { Db } from 'mongodb';
 
 const router = express.Router();
 
-router.post("/register", registerUser);
-router.get("/users", getAllUsers);
+// Modify the routes to accept the db object
+export default function userRoutes(app: Application, db: Db) {
+    router.post("/register", (req, res) => registerUser(req, res, db));
+    router.get("/users", (req, res) => getAllUsers(req, res, db));
+    router.delete("/users/:username", (req, res) => removeUser(req, res, db));
 
-export default router;
+    app.use("/api", router);
+}
