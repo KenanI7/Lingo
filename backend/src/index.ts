@@ -7,11 +7,9 @@ const app = express();
 
 app.use(express.json());
 
-// Define MongoDB connection parameters
 const uri = 'mongodb+srv://LingoAdmin:2H9ixYwdHwvmUcy6@lingo.4dysqby.mongodb.net/';
-const dbName = 'your-database-name'; // Specify your database name here
+const dbName = 'your-database-name'; 
 
-// Create a new MongoClient instance
 const client = new MongoClient(uri);
 
 // Connect to MongoDB
@@ -19,7 +17,6 @@ async function connectToMongoDB() {
     try {
         await client.connect();
         console.log('Connected to MongoDB');
-        // Pass the database instance to the userRoutes
         const db = client.db(dbName);
         app.use("/api", userRoutes(db));
     } catch (error) {
