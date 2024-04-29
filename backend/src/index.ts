@@ -1,32 +1,40 @@
-import express from 'express';
-import { MongoClient } from 'mongodb';
-import userRoutes from './routes/userRoutes';
+import express from "express";
+import userRouter from "./routes/user";
+import { userRoutes } from "./routes/user";
+
+import { connectToMongoDB } from "./db";
+import { authMiddleware } from "./middleware";
+import { authRoutes } from "./routes/auth";
+
+import authRouter from "./routes/auth";
+
+require("dotenv").config();
 
 const app = express();
+
 app.use(express.json());
 
-const uri = 'mongodb+srv://LingoAdmin:2H9ixYwdHwvmUcy6@lingo.4dysqby.mongodb.net/';
-const dbName = 'Lingo';
-const client = new MongoClient(uri);
-
-async function connectToMongoDB() {
-    try {
-        await client.connect();
-        console.log('Connected to MongoDB');
-        const db = client.db(dbName);
-        userRoutes(app, db);
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-    }
-}
-
 const PORT = process.env.PORT || 8000;
-app.get("/", (req, res) => {
-    res.send("SUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-});
+
+const main = async () => {
+  try {
+    const db = await connectToMongoDB();
+
+    if (!db) throw new Error("Error connecting to MongoDB");
+
+    authRoutes(db);
+    userRoutes(db);
+
+    app.use("/api/auth", authRouter);
+
+    app.use("/api/users", authMiddleware, userRouter);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+main();
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
-
-connectToMongoDB();
