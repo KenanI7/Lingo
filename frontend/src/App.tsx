@@ -1,11 +1,3 @@
-// App.tsx
-import React, { useState } from 'react';
-import { Router } from '@reach/router';
-import Sidebar from './components/sidebar'; 
-import Hamburger from './components/hamburger'; 
-import LessonsPage from './pages/LessonsPage';
-import MyProgressPage from './pages/MyProgressPage';
-import SavedPage from './pages/SavedPage';
 import { useNavigate } from "react-router-dom";
 import { Button } from "./components/ui/button";
 import { useRef } from "react";

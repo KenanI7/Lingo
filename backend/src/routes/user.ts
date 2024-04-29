@@ -1,17 +1,13 @@
 import express, { Application } from "express";
-import { registerUser, getAllUsers, removeUser } from "../controllers/user";
+import { getAllUsers, removeUser } from "../controllers/user";
 import { Db } from "mongodb";
 
-export const router = express.Router();
+const router = express.Router();
 
-export default function userRoutes(app: Application, db: Db) {
-  router.post("/register", (req, res) => registerUser(req, res, db));
-  router.get("/users", (req, res) => getAllUsers(req, res, db));
-  router.delete("/users/:username", (req, res) => removeUser(req, res, db));
+export function userRoutes(db: Db) {
+  router.get("/", (req, res) => getAllUsers(req, res, db));
 
-  router.get("/test", (req, res) => {
-    res.send("Hello World!");
-  });
-
-  app.use("/api", router);
+  router.delete("/:username", (req, res) => removeUser(req, res, db));
 }
+
+export default router;
