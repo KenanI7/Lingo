@@ -1,4 +1,3 @@
-// FreeConversation.tsx
 import React from "react";
 
 const FreeConversation: React.FC = () => {
