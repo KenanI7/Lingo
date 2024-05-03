@@ -7,8 +7,9 @@ import SignUpPage from "./pages/auth/sign-up.tsx";
 import LoginPage from "./pages/auth/login.tsx";
 import DashboardPage from "./pages/dash/dashboard.tsx";
 import Profile from "./pages/subpages/profile.tsx";
-import Lessons from "./pages/subpages/lessons.tsx"
 import LessonsPage from "./pages/subpages/lessons.tsx";
+import FreeConversation from "./pages/subpages/freeconversation.tsx";
+import VocabularyPage from "./pages/subpages/vocabulary.tsx";
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
   {
     path : "/lessons",
     element: <LessonsPage/>
+  },
+  {
+    path : "/free-conversation",
+    element: <FreeConversation />
+  },
+  {
+    path : "/vocabulary",
+    element: <VocabularyPage />
   }
 ]);
 

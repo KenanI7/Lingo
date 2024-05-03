@@ -37,6 +37,11 @@ const Sidebar = () => {
               <FaComments className="mr-2" /> Free Conversation Lesson
             </div>
           </Link>
+          <Link to="/vocabulary" className={`menu-item ${selectedItem === "vocabulary" ? "active" : ""}`} onClick={() => handleItemClick("vocabulary")}>
+            <div className="flex items-center py-2 px-3 rounded-lg hover:bg-blue-600">
+              <FaComments className="mr-2" /> Vocabulary
+            </div>
+          </Link>
         </div>
       </div>
   
