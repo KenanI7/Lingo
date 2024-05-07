@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "@/components/ui/sidebar";
-import { FaUser, FaEnvelope, FaKey, FaChartBar, FaCamera } from "react-icons/fa"; 
+import { FaUser, FaEnvelope, FaChartBar, FaCamera } from "react-icons/fa"; 
 
 const Profile: React.FC = () => {
   const [userData, setUserData] = useState<any>(null);
@@ -29,16 +29,6 @@ const Profile: React.FC = () => {
     fetchUserData();
     fetchProgress();
   }, []);
-
-  const handleResetPassword = async () => {
-    try {
-      await axios.post("/api/reset-password");
-      alert("Password reset successful!");
-    } catch (error) {
-      console.error("Error resetting password:", error);
-      alert("An error occurred while resetting the password.");
-    }
-  };
 
   if (!userData) {
     return <div>Loading...</div>;
@@ -77,7 +67,7 @@ const Profile: React.FC = () => {
                 <div className="flex items-center">
                   <FaCamera className="w-8 h-8 mr-2" />
                   <span className="font-bold text-lg">Profile Picture:</span>
-                  <span className="text-lg">{/* Add profile picture here */}</span>
+                  <span className="text-lg">{/* Add the pic here */}</span>
                 </div>
                 <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
                   Edit Profile
@@ -93,24 +83,10 @@ const Profile: React.FC = () => {
               <div className="flex items-center mt-4">
                 <FaChartBar className="w-8 h-8 mr-2" />
                 <span className="font-bold text-lg">Performance Chart:</span>
-                <span className="text-lg">{/* Add performance chart here */}</span>
+                <span className="text-lg">{/* Add the chart */}</span>
               </div>
               <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mt-4">
                 View Completed Lessons
-              </button>
-            </div>
-            <div className="rounded-lg p-6 col-span-2">
-              <div className="flex justify-end">
-                <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg flex items-center"
-                  onClick={handleResetPassword}
-                >
-                  <FaKey className="w-5 h-5 mr-2" />
-                  Reset Password
-                </button>
-              </div>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mt-4">
-                Change Profile Picture
               </button>
             </div>
           </div>

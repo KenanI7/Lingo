@@ -10,7 +10,8 @@ import Profile from "./pages/subpages/profile.tsx";
 import LessonsPage from "./pages/subpages/lessons.tsx";
 import FreeConversation from "./pages/subpages/freeconversation.tsx";
 import VocabularyPage from "./pages/subpages/vocabulary.tsx";
-
+import SettingsPage from "./pages/subpages/settingsPage.tsx";
+import FAQPage from "./pages/subpages/faq.tsx";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,15 @@ const router = createBrowserRouter([
   {
     path : "/vocabulary",
     element: <VocabularyPage />
-  }
+  },
+  {
+    path: "/settings",
+    element: <SettingsPage />
+  },
+  {
+    path: "/faq",
+    element: <FAQPage />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

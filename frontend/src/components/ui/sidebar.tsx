@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUser, FaBook, FaComments, FaCog, FaQuestionCircle } from "react-icons/fa"; 
+import { FaUser, FaBook, FaComments, FaCog, } from "react-icons/fa"; 
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -46,9 +46,9 @@ const Sidebar = () => {
       </div>
   
       <div className="flex justify-between">
-        <button className="flex items-center py-2 px-3 rounded-lg hover:bg-blue-600">
+        <Link to="/faq" className="flex items-center py-2 px-3 rounded-lg hover:bg-blue-600">
           FAQ
-        </button>
+        </Link>
         <Link to="/settings" className="flex items-center py-2 px-3 rounded-lg hover:bg-blue-600">
           <FaCog className="mr-2" /> Settings
         </Link>
