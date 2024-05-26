@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "./components/ui/button";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import LearnMore from "./pages/learn-more";
 
 const App = () => {
   const navigate = useNavigate();
 
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div>

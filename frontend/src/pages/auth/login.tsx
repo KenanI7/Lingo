@@ -1,6 +1,7 @@
-import React from "react";
+import { LoginUser, loginUser } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/ui/inputWithLabel";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -9,17 +10,37 @@ const LoginPage = () => {
 
   const form = useForm({
     defaultValues: {
-      email: "",
       username: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
-  const onSubmit = (data: { email: string; username: string; password: string; confirmPassword: string }) => {
-    console.log(data);
-    navigate("/dashboard");
+  const onSubmit = async (data: any) => {
+    try {
+      const user = await loginUser({
+        username: data.username,
+        password: data.password,
+      } as LoginUser);
+
+      if (user.token) {
+        localStorage.setItem("token", user.token);
+
+        navigate("/dashboard");
+      } else {
+        form.setError("username", {
+          message: "Login failed!",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="flex min-h-screen justify-center items-center">
@@ -30,7 +51,7 @@ const LoginPage = () => {
             Don't have an account yet?{" "}
             <span
               className="underline cursor-pointer"
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/login")}
             >
               Sign up
             </span>
@@ -39,37 +60,22 @@ const LoginPage = () => {
         <div className="w-full flex flex-col justify-center items-center gap-6">
           <FormProvider {...form}>
             <form
+              action=""
               onSubmit={form.handleSubmit(onSubmit)}
               className="w-full flex flex-col justify-center items-center gap-4"
             >
               <div className="w-full flex flex-col justify-center items-center gap-4">
                 <InputWithLabel
-                  placeholder="Email"
-                  id="email"
-                  type="email"
-                  label="Email"
-                  {...form.register("email", { required: true })}
-                />
-                <InputWithLabel
                   placeholder="Username"
                   id="username"
-                  type="text"
+                  type="username"
                   label="Username"
-                  {...form.register("username", { required: true })}
                 />
                 <InputWithLabel
                   placeholder="Password"
                   id="password"
                   type="password"
                   label="Password"
-                  {...form.register("password", { required: true })}
-                />
-                <InputWithLabel
-                  placeholder="Confirm Password"
-                  id="confirmPassword"
-                  type="password"
-                  label="Confirm Password"
-                  {...form.register("confirmPassword", { required: true })}
                 />
               </div>
               <Button className="w-[385px]" type="submit">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "@/components/ui/sidebar";
-import { FaUser, FaEnvelope, FaChartBar, FaCamera } from "react-icons/fa"; 
+import { FaUser, FaEnvelope, FaChartBar, FaCamera } from "react-icons/fa";
 
 const Profile: React.FC = () => {
   const [userData, setUserData] = useState<any>(null);
@@ -37,12 +37,16 @@ const Profile: React.FC = () => {
   return (
     <div className="flex h-screen justify-end">
       <Sidebar />
-      <div className="flex flex-col justify-center items-center bg-gray-100 p-8 rounded-lg shadow-lg" style={{ width: "80%", minHeight: "100vh" }}>
-        <h1 className="text-7xl font-semibold mb-8 text-primary-accent">Welcome home learner!</h1>
+      <div className="flex flex-col justify-center items-center bg-gray-100 p-8 rounded-lg shadow-lg w-[90%]">
+        <h1 className="text-7xl font-semibold mb-8 text-primary-accent">
+          Welcome home learner!
+        </h1>
         <div className="w-full bg-gray-100 p-8 rounded-lg shadow-lg">
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-white rounded-lg p-6 shadow-md flex-1">
-              <h2 className="text-3xl font-semibold mb-4">Profile Information</h2>
+              <h2 className="text-3xl font-semibold mb-4">
+                Profile Information
+              </h2>
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center">
                   <FaUser className="w-8 h-8 mr-2" />
@@ -92,7 +96,10 @@ const Profile: React.FC = () => {
           </div>
         </div>
         <div className="flex justify-center mt-8">
-          <a href="/help" className="text-primary-accent font-semibold hover:underline">
+          <a
+            href="/help"
+            className="text-primary-accent font-semibold hover:underline"
+          >
             Need help? Contact support
           </a>
         </div>
