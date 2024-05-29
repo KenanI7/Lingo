@@ -1,5 +1,7 @@
+import { RegisterUser, registerUser } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/ui/inputWithLabel";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -15,8 +17,22 @@ const SignUpPage = () => {
   });
 
   const onSubmit = (data: unknown) => {
-    console.log(data);
+    const user = registerUser(data as RegisterUser);
+
+    if (user) {
+      navigate("/login");
+    } else {
+      form.setError("username", {
+        message: "Register failed!",
+      });
+    }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="flex min-h-screen justify-center items-center">
