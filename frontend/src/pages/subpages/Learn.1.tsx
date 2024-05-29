@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Sidebar from "@/components/ui/sidebar";
-
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@radix-ui/react-select";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+import { Select } from "@radix-ui/react-select";
 
-const Learn: React.FC = () => {
+export const Learn: React.FC = () => {
   const [conversation, setConversation] = useState<string[]>([]);
   const [inputText, setInputText] = useState<string>("");
 
@@ -31,7 +18,6 @@ const Learn: React.FC = () => {
 
   const onSubmit = async (data: { language: string; phrase: string }) => {
     console.log(data);
-
     // try {
     // } catch (error) {}
   };
@@ -48,7 +34,7 @@ const Learn: React.FC = () => {
   return (
     <div className="flex h-screen justify-end">
       <Sidebar />
-      <div className="flex flex-col justify-start items-center bg-gray-100 p-8 rounded-lg shadow-lg w-[90%]">
+      <div className="flex flex-col justify-center bg-gray-100 p-8 rounded-lg shadow-lg w-[90%]">
         <h1 className="text-3xl font-semibold mb-4">
           Free Conversation Lesson
         </h1>
@@ -56,7 +42,7 @@ const Learn: React.FC = () => {
           This allows you to improve your vocabulary by asking for example
           phrases for different situations.
         </p>
-        <div className="w-[60%] bg-gray-100 p-8 rounded-lg shadow-lg">
+        <div className="w-full bg-gray-100 p-8 rounded-lg shadow-lg">
           <div className="flex flex-col space-y-4">
             <FormProvider {...form}>
               <form action="" onSubmit={form.handleSubmit(onSubmit)}>
@@ -69,17 +55,20 @@ const Learn: React.FC = () => {
                       Choose a language and write up a question such as: "How do
                       I ask for directions ?"
                     </label>
+
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Theme" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
-                  <div>
-                    <FormLabel>Language</FormLabel>
-                    <Input {...form.register("language")} className="w-[20%]" />
-                  </div>
-
-                  <div>
-                    <FormLabel>Phrase</FormLabel>
-                    <Input {...form.register("phrase")} />
-                  </div>
+                  <Input {...form.register("phrase")} />
                 </div>
                 <div className="flex justify-end mt-4">
                   <button
@@ -106,5 +95,3 @@ const Learn: React.FC = () => {
     </div>
   );
 };
-
-export default Learn;

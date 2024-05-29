@@ -13,6 +13,7 @@ import SettingsPage from "./pages/subpages/settingsPage.tsx";
 import FAQPage from "./pages/subpages/faq.tsx";
 import Learn from "./pages/subpages/learn.tsx";
 import ProtectedRoute from "./pages/auth/protectedRoute.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
   {
@@ -57,8 +58,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

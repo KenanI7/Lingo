@@ -1,16 +1,25 @@
 import express from "express";
 import userRouter from "./routes/user";
+import langRouter from "./routes/lang";
 import { userRoutes } from "./routes/user";
 
 import { connectToMongoDB } from "./db";
 import { authMiddleware } from "./middleware";
 import { authRoutes } from "./routes/auth";
 
+import cors from "cors";
 import authRouter from "./routes/auth";
+import { langRoutes } from "./routes/lang";
 
 require("dotenv").config();
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 app.use(express.json());
 
@@ -24,10 +33,11 @@ const main = async () => {
 
     authRoutes(db);
     userRoutes(db);
+    langRoutes(db);
 
     app.use("/api/auth", authRouter);
-
     app.use("/api/users", authMiddleware, userRouter);
+    app.use("/api/lang", authMiddleware, langRouter);
   } catch (error) {
     console.log(error);
   }

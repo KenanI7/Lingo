@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Sidebar from "@/components/ui/sidebar";
+import { useNavigate } from "react-router-dom";
 
 const Settings: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -38,6 +40,15 @@ const Settings: React.FC = () => {
     } catch (error) {
       console.error("Error changing email:", error);
       alert("An error occurred while resetting the email.");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("token");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
   };
 
@@ -99,7 +110,7 @@ const Settings: React.FC = () => {
           </button>
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
-            onClick={handleChangeEmail}
+            onClick={handleLogout}
           >
             Log out
           </button>

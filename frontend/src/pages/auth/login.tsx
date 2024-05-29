@@ -15,7 +15,7 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { username: string; password: string }) => {
     try {
       const user = await loginUser({
         username: data.username,
