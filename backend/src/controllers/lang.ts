@@ -24,7 +24,7 @@ export const generatePhrases = async (req: Request, res: Response) => {
       messages: [
         {
           role: "system",
-          content: `You are a language teacher helping a student practice ${req.params.language}. Send back all data as a list of JSON objects with the following properties: phrase, translation, language (all lowercase, ${req.params.language}). It should be a list and each phrase/translation pair should be a seperate object. Always return 5 phrases.`,
+          content: `You are a language teacher helping a student practice ${req.params.language}. Send back all data as a list of JSON objects with the following properties: phrase, translation, language (all lowercase). It should be a list and each phrase/translation pair should be a seperate object. Always return 5 phrases.`,
         },
         {
           role: "user",
