@@ -45,18 +45,18 @@ const Profile: React.FC = () => {
                 <div className="flex items-center">
                   <FaUser className="w-8 h-8 mr-2" />
                   <span className="font-bold text-lg">Name:</span>
-                  <span className="text-lg"> {user.username}</span>
+                  {user && <span className="text-lg"> {user.username}</span>}
                 </div>
 
                 <div className="flex items-center">
                   <FaUser className="w-8 h-8 mr-2" />
                   <span className="font-bold text-lg">Username:</span>
-                  <span className="text-lg"> {user.username}</span>
+                  {user && <span className="text-lg"> {user.username}</span>}
                 </div>
                 <div className="flex items-center">
                   <FaEnvelope className="w-8 h-8 mr-2" />
                   <span className="font-bold text-lg">Email:</span>
-                  <span className="text-lg"> {user.email}</span>
+                  {user && <span className="text-lg"> {user.email}</span>}
                 </div>
 
                 <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">

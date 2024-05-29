@@ -4,42 +4,57 @@ import Sidebar from "@/components/ui/sidebar";
 
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@radix-ui/react-select";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+import { FormLabel } from "@/components/ui/form";
+import { useQuery } from "@tanstack/react-query";
+import { generatePhrases, savePhraseToVocabulary } from "@/api/language";
+import toast, { Toaster } from "react-hot-toast";
 
 const Learn: React.FC = () => {
   const [conversation, setConversation] = useState<string[]>([]);
-  const [inputText, setInputText] = useState<string>("");
+  const [phrases, setPhrases] = useState<
+    { phrase: string; translation: string; language: string }[]
+  >([]);
 
   const form = useForm({
     defaultValues: {
       language: "",
-      phrase: "",
+      input: "",
     },
   });
 
-  const onSubmit = async (data: { language: string; phrase: string }) => {
-    console.log(data);
+  const onSubmit = async (data: { language: string; input: string }) => {
+    const response = await generatePhrases(data);
+
+    if (response) {
+      setPhrases(response);
+    }
 
     // try {
     // } catch (error) {}
   };
 
-  const saveToVocabulary = async (word: string) => {
+  const saveToVocabulary = async (data: {
+    phrase: string;
+    translation: string;
+    language: string;
+  }) => {
     try {
-      const response = await axios.post("/api/save-word", { word });
-      console.log("Response when armani connects it:", response.data);
+      const userId = localStorage.getItem("user");
+
+      const response = await savePhraseToVocabulary({
+        ...data,
+        userId,
+      });
+
+      if (response.success) {
+        toast("Saved to vocabulary!", {
+          icon: "🎉",
+        });
+      } else {
+        toast.error("Error saving to vocabulary!", {
+          icon: "❌",
+        });
+      }
     } catch (error) {
       console.error("Error saving word to vocabulary:", error);
     }
@@ -57,6 +72,7 @@ const Learn: React.FC = () => {
           phrases for different situations.
         </p>
         <div className="w-[60%] bg-gray-100 p-8 rounded-lg shadow-lg">
+          <Toaster />
           <div className="flex flex-col space-y-4">
             <FormProvider {...form}>
               <form action="" onSubmit={form.handleSubmit(onSubmit)}>
@@ -78,7 +94,7 @@ const Learn: React.FC = () => {
 
                   <div>
                     <FormLabel>Phrase</FormLabel>
-                    <Input {...form.register("phrase")} />
+                    <Input {...form.register("input")} />
                   </div>
                 </div>
                 <div className="flex justify-end mt-4">
@@ -94,11 +110,23 @@ const Learn: React.FC = () => {
           </div>
           <div className="mt-8">
             <div className="space-y-2">
-              {conversation.map((message, index) => (
-                <div key={index} className="p-2 rounded-lg bg-white shadow-md">
-                  {message}
-                </div>
-              ))}
+              {phrases.length !== 0 &&
+                phrases.map((phrase, index) => (
+                  <div
+                    key={index}
+                    className="p-4 rounded-lg bg-white shadow-md flex justify-between"
+                  >
+                    <p>
+                      {phrase.phrase} - {phrase.translation}{" "}
+                    </p>
+                    <button
+                      onClick={() => saveToVocabulary(phrase)}
+                      className="bg-blue-500 hover:bg-blue-600 text-white cursor-pointer p-2 rounded-md"
+                    >
+                      Save to vocabulary
+                    </button>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

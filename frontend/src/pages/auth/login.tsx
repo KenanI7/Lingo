@@ -24,6 +24,7 @@ const LoginPage = () => {
 
       if (user.token) {
         localStorage.setItem("token", user.token);
+        localStorage.setItem("user", data.username);
 
         navigate("/dashboard");
       } else {
