@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import Sidebar from "@/components/ui/sidebar";
 
 const Lessons: React.FC = () => {
@@ -17,16 +17,10 @@ const Lessons: React.FC = () => {
 
     const handleLessonCompletion = (lessonId: number) => {
         const updatedCompletedLessons = new Set<number>(completedLessons);
-        if (completedLessons.has(lessonId)) {
-            updatedCompletedLessons.delete(lessonId);
-        } else {
+        if (!completedLessons.has(lessonId)) {
             updatedCompletedLessons.add(lessonId);
+            setCompletedLessons(updatedCompletedLessons);
         }
-        setCompletedLessons(updatedCompletedLessons);
-    };
-
-    const handleStartLesson = (lessonId: number) => {
-        console.log("Starting lesson", { lessonId });
     };
 
     return (
@@ -52,11 +46,9 @@ const Lessons: React.FC = () => {
                                         />
                                         <label>Completed</label>
                                     </div>
-                                    {/* Wrap the button with Link to navigate to the corresponding level subpage */}
                                     <Link to={`/level${lesson.id}`}>
                                         <button
                                             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
-                                            onClick={() => handleStartLesson(lesson.id)}
                                         >
                                             Start Lesson
                                         </button>

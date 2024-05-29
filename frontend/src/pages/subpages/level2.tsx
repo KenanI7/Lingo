@@ -1,4 +1,4 @@
-// Level2.tsx
+ï»¿// Level2.tsx
 import React, { useState } from 'react';
 import Question from '../../lib/Question';
 
@@ -15,8 +15,8 @@ const questions = [
     },
     {
         question: 'Which of the following sentences is grammatically correct?',
-        choices: ['She don’t like apples.', 'She doesn’t like apples.', 'She not likes apples.'],
-        answer: 'She doesn’t like apples.',
+        choices: ['She donï¿½t like apples.', 'She doesnï¿½t like apples.', 'She not likes apples.'],
+        answer: 'She doesnï¿½t like apples.',
     },
     {
         question: 'What is the past participle of "go"?',
@@ -29,7 +29,6 @@ const questions = [
         answer: 'If I were you, I would apologize.',
     },
 ];
-
 const Level2: React.FC = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
@@ -44,10 +43,15 @@ const Level2: React.FC = () => {
             setCurrentQuestion(nextQuestion);
         } else {
             alert(`Question finished. You scored ${score} / ${questions.length}`);
+            simulateLessonCompletion(2); // Simulate lesson completion
             window.location.href = '/lessons';
-
         }
 
+    };
+
+    // Function to simulate storing lesson completion state
+    const simulateLessonCompletion = (lessonId: number) => {
+        console.log(`Lesson ${lessonId} completed!`);
     };
 
     return (

@@ -28,7 +28,6 @@ const questions = [
         answer: 'I went to the store.',
     },
 ];
-
 const Level1: React.FC = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
@@ -43,8 +42,14 @@ const Level1: React.FC = () => {
             setCurrentQuestion(nextQuestion);
         } else {
             alert(`Question finished. You scored ${score} / ${questions.length}`);
+            simulateLessonCompletion(1); // Simulate lesson completion
             window.location.href = '/lessons';
         }
+    };
+
+    // Function to simulate storing lesson completion state
+    const simulateLessonCompletion = (lessonId: number) => {
+        console.log(`Lesson ${lessonId} completed!`);
     };
 
     return (
