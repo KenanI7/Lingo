@@ -2,3 +2,7 @@ node_modules
 dist
 .env
 *.env
+.vs/
+.vscode
+node_modules/
+*.lock

@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 *.env
+
+.vs/
+.vscode
+node_modules/
+*.lock
