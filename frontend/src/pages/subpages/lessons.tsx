@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "@/components/ui/sidebar";
 
-const Lessons: React.FC = () => {
+interface LessonsProps {
+    score: number;
+}
+
+const Lessons: React.FC<LessonsProps> = ({ score }) => {
     const [completedLessons, setCompletedLessons] = useState<Set<number>>(
         new Set()
     );
@@ -23,8 +27,14 @@ const Lessons: React.FC = () => {
         }
     };
 
+    // Check if the score is 5/5 to mark the lesson as completed
+    if (score === 5) {
+        handleLessonCompletion(1); // Assuming lesson ID is 1 for the first lesson
+    }
+
     return (
         <div className="flex justify-end">
+            {/* Sidebar component */}
             <Sidebar />
             <div className="flex bg-gray-100 p-8 rounded-lg shadow-lg justify-center w-[90%]">
                 <div className="flex justify-center w-full">

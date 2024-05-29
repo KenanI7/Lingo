@@ -28,26 +28,30 @@ const questions = [
         answer: 'I went to the store.',
     },
 ];
+
 const Level1: React.FC = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
 
     const handleAnswer = (answer: string) => {
-        if (answer === questions[currentQuestion].answer) {
-            setScore(score + 1);
+        const isCorrect = answer === questions[currentQuestion].answer;
+        const nextQuestion = currentQuestion + 1;
+
+        if (isCorrect) {
+            setScore(score + 1); // Update the score
         }
 
-        const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
         } else {
-            alert(`Question finished. You scored ${score} / ${questions.length}`);
-            simulateLessonCompletion(1); // Simulate lesson completion
+            // Check if all questions are answered correctly before showing the alert
+            const finalScore = isCorrect ? score + 1 : score; // Include the current question in the score calculation
+            alert(`Question finished. You scored ${finalScore} / ${questions.length}`);
+            simulateLessonCompletion(1);
             window.location.href = '/lessons';
         }
     };
 
-    // Function to simulate storing lesson completion state
     const simulateLessonCompletion = (lessonId: number) => {
         console.log(`Lesson ${lessonId} completed!`);
     };
@@ -64,7 +68,7 @@ const Level1: React.FC = () => {
                 />
             ) : null}
         </div>
-    )
-}
+    );
+};
 
 export default Level1;

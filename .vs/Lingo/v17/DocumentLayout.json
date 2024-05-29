@@ -1,0 +1,82 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\23\\source\\repos\\Lingo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\23\\source\\repos\\Lingo\\frontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\23\\source\\repos\\Lingo\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\23\\source\\repos\\Lingo\\frontend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 123,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\23\\source\\repos\\Lingo\\frontend\\.env",
+              "RelativeDocumentMoniker": "frontend\\.env",
+              "ToolTip": "C:\\Users\\23\\source\\repos\\Lingo\\frontend\\.env",
+              "RelativeToolTip": "frontend\\.env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-29T10:23:04.586Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\23\\source\\repos\\Lingo\\backend\\.env",
+              "RelativeDocumentMoniker": "backend\\.env",
+              "ToolTip": "C:\\Users\\23\\source\\repos\\Lingo\\backend\\.env",
+              "RelativeToolTip": "backend\\.env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-29T10:24:27.052Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\23\\source\\repos\\Lingo\\frontend\\package.json",
+              "RelativeDocumentMoniker": "frontend\\package.json",
+              "ToolTip": "C:\\Users\\23\\source\\repos\\Lingo\\frontend\\package.json",
+              "RelativeToolTip": "frontend\\package.json",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAUwDMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-29T20:53:08.655Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 369,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\src",
+    "\\frontend",
+    "\\frontend\\src"
+  ],
+  "SelectedNode": "\\docker-compose.yaml",
+  "PreviewInSolutionExplorer": false
+}
